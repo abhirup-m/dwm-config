@@ -73,6 +73,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *webcmd[]  = { "midori", NULL };
 static const char *explorercmd[]  = { "caja", NULL };
 static const char *editorcmd[]  = { "st", "-c", "nvim", "nvim", NULL };
+static const char *lockcmd[]  = { "slock", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -81,12 +82,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = editorcmd } },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_l,      spawn,          {.v = lockcmd } },
+	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_Left,   setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             		    XK_x,      killclient,     {0} },
