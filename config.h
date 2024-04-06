@@ -74,6 +74,9 @@ static const char *webcmd[]  = { "midori", NULL };
 static const char *explorercmd[]  = { "caja", NULL };
 static const char *editorcmd[]  = { "st", "-c", "nvim", "nvim", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
+static const char *logoutcmd[]  =  { "killall", "xinit", NULL };
+static const char *lightupcmd[]  =  { "brightnessctl", "set", "100+", NULL };
+static const char *lightdowncmd[]  =  { "brightnessctl", "set", "100-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -83,6 +86,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = editorcmd } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = logoutcmd } },
+	{ MODKEY|ShiftMask,             XK_equal,  spawn,          {.v = lightupcmd } },
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = lightdowncmd } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -91,7 +97,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             		    XK_x,      killclient,     {0} },
+	{ MODKEY,             		    XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_comma,  setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_period, setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_slash,  setlayout,      {.v = &layouts[2]} },
