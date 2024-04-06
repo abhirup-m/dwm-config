@@ -26,15 +26,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "midori",       NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "Caja",         NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "st",           NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "nvim",         NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Evince",       NULL,       NULL,       1 << 4 ,      0,           -1 },
-	{ "Inkscape",     NULL,       NULL,       1 << 5 ,      0,           -1 },
-	{ "float-term",   NULL,       NULL,       0 ,           1,           -1 },
-	{ "Lxappearance", NULL,       NULL,       0 ,           1,           -1 },
+	/* class      instance    title       tags mask    switchtotag   isfloating   monitor */
+	{ "midori",       NULL,       NULL,       1 << 0,       1,			0,           -1 },
+	{ "Caja",         NULL,       NULL,       1 << 1,       1,			0,           -1 },
+	{ "st",           NULL,       NULL,       1 << 2,       1,			0,           -1 },
+	{ "nvim",         NULL,       NULL,       1 << 3,       1,			0,           -1 },
+	{ "Evince",       NULL,       NULL,       1 << 4 ,      1,			0,           -1 },
+	{ "Inkscape",     NULL,       NULL,       1 << 5 ,      1,			0,           -1 },
+	{ "float-term",   NULL,       NULL,       0 ,           1,			1,           -1 },
+	{ "Lxappearance", NULL,       NULL,       0 ,           1,			1,           -1 },
 };
 
 /* layout(s) */
