@@ -12,15 +12,15 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "RobotoMono Nerd Font:size=13" };
 static const char dmenufont[]       = "RobotoMono Nerd Font 14";
-static const char col_gray1[]       = "#282c34";
+static const char col_gray1[]       = "#333333";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#f56c75";
-static const char col_cyan[]        = "#171b23";
+static const char col_gray4[]       = "#ffffff";
+static const char col_cyan[]        = "#212121";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_cyan, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_cyan  },
 };
 
 /* tagging */
@@ -38,7 +38,7 @@ static const Rule rules[] = {
 	{ "nvim",         NULL,       NULL,       1 << 3,       1,			0,           -1 },
 	{ "Evince",       NULL,       NULL,       1 << 4 ,      1,			1,           -1 },
 	{ "Inkscape",     NULL,       NULL,       1 << 5 ,      1,			0,           -1 },
-	{ "float-term",   NULL,       NULL,       0 ,           1,			1,           -1 },
+	{ "float-term",   NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Lxappearance", NULL,       NULL,       0 ,           0,			1,           -1 },
 };
 
