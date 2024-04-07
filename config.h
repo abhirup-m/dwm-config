@@ -39,6 +39,7 @@ static const Rule rules[] = {
 	{ "Evince",       NULL,       NULL,       1 << 4 ,      1,			1,           -1 },
 	{ "Inkscape",     NULL,       NULL,       1 << 5 ,      1,			0,           -1 },
 	{ "float-term",   NULL,       NULL,       0 ,           0,			1,           -1 },
+	{ "Celluloid",   NULL,        NULL,       0 ,           0,			1,           -1 },
 	{ "Lxappearance", NULL,       NULL,       0 ,           0,			1,           -1 },
 };
 
