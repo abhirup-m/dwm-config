@@ -78,6 +78,8 @@ static const char *lockcmd[]  = { "slock", NULL };
 static const char *logoutcmd[]  =  { "killall", "xinit", NULL };
 static const char *lightupcmd[]  =  { "brightnessctl", "set", "100+", NULL };
 static const char *lightdowncmd[]  =  { "brightnessctl", "set", "100-", NULL };
+static const char *volumeupcmd[]  =  { "amixer", "set", "Master", "5%+", NULL };
+static const char *volumedowncmd[]  =  { "amixer", "set", "Master", "5%-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -90,6 +92,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = logoutcmd } },
 	{ MODKEY|ShiftMask,             XK_equal,  spawn,          {.v = lightupcmd } },
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = lightdowncmd } },
+	{ MODKEY|ControlMask,           XK_equal,  spawn,          {.v = volumeupcmd } },
+	{ MODKEY|ControlMask,           XK_minus,  spawn,          {.v = volumedowncmd } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
