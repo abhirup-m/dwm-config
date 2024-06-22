@@ -10,17 +10,15 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "RobotoMono Nerd Font:size=13" };
-static const char dmenufont[]       = "RobotoMono Nerd Font 14";
-static const char col_bg1[]       = "#2D2D2D";
-static const char col_fg2[]       = "#3D3D3D";
-static const char col_fg1[]       = "#DCDCDC";
-static const char col_bg2[]       = "#D64937";
-static const char col_border[]    = "#535353";
+static const char *fonts[]          = { "Roboto Mono:size=14" };
+static const char dmenufont[]       = "Roboto Mono-14";
+static const char col_darkgray[]       = "#2D2D2D";
+static const char col_lightgray[]       = "#4D4D4D";
+static const char col_palewhite[]       = "#DCDCDC";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg1, col_bg1,   col_fg1},
-	[SchemeSel]  = { col_bg1, col_bg2,  col_fg1},
+	[SchemeNorm] = { col_palewhite, col_darkgray,  col_palewhite},
+	[SchemeSel]  = { col_palewhite, col_darkgray,  col_palewhite},
 };
 
 /* tagging */
@@ -32,16 +30,17 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask    switchtotag   isfloating   monitor */
-	{ "midori",       NULL,       NULL,       1 << 0,       1,			0,           -1 },
+	{ "Google-chrome-beta",       NULL,       NULL,       1 << 0,       1,			0,           -1 },
 	{ "Caja",         NULL,       NULL,       1 << 1,       1,			0,           -1 },
-	{ "st",           NULL,       NULL,       1 << 2,       1,			0,           -1 },
-	{ "nvim",         NULL,       NULL,       1 << 3,       1,			0,           -1 },
+	{ "st-256color",    NULL,       NULL,       1 << 2,       1,			0,           -1 },
+	{ "Editor",       NULL,       NULL,       1 << 3,       1,			0,           -1 },
 	{ "Evince",       NULL,       NULL,       1 << 4 ,      1,			1,           -1 },
 	{ "Inkscape",     NULL,       NULL,       1 << 5 ,      1,			0,           -1 },
 	{ "float-term",   NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Celluloid",    NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Lxappearance", NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Gpick", 		  NULL,       NULL,       0 ,           0,			1,           -1 },
+	{ "Gpicview", 	  NULL,       NULL,       0 ,           0,			1,           -1 },
 };
 
 /* layout(s) */
@@ -70,17 +69,17 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "bemenu-run", "-l", "10", "--fn", dmenufont, "-c", "--nb", col_bg1, "--hb",  col_bg2, "--ab", col_bg1, "--nf", col_fg1, "--hf", col_bg1, "--fb", col_fg2, "--ff", col_fg1, "--cb", col_fg1, "-p", "", "-W", "0.3", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-f", "-i", "-l", "20", "-fn", dmenufont, "-sb", col_lightgray, "-sf", col_palewhite, "-nb", col_darkgray, "-nf", col_palewhite, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *webcmd[]  = { "midori", NULL };
+static const char *webcmd[]  = { "google-chrome-beta", NULL };
 static const char *explorercmd[]  = { "caja", NULL };
-static const char *editorcmd[]  = { "st", "-c", "nvim", "nvim", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *logoutcmd[]  =  { "killall", "xinit", NULL };
 static const char *lightupcmd[]  =  { "brightnessctl", "set", "100+", NULL };
 static const char *lightdowncmd[]  =  { "brightnessctl", "set", "100-", NULL };
 static const char *volumeupcmd[]  =  { "amixer", "set", "Master", "5%+", NULL };
 static const char *volumedowncmd[]  =  { "amixer", "set", "Master", "5%-", NULL };
+static const char *rebootcmd[]  =  { "systemctl", "reboot", "-i", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -88,13 +87,14 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = editorcmd } },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("st -c Editor nvim")},
 	{ MODKEY,                       XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = logoutcmd } },
 	{ MODKEY|ShiftMask,             XK_equal,  spawn,          {.v = lightupcmd } },
 	{ MODKEY|ShiftMask,             XK_minus,  spawn,          {.v = lightdowncmd } },
 	{ MODKEY|ControlMask,           XK_equal,  spawn,          {.v = volumeupcmd } },
 	{ MODKEY|ControlMask,           XK_minus,  spawn,          {.v = volumedowncmd } },
+	{ MODKEY|ShiftMask,           	XK_y,      spawn,          {.v = rebootcmd } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
