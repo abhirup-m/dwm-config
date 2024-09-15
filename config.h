@@ -10,15 +10,17 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Roboto Mono:size=14" };
-static const char dmenufont[]       = "Roboto Mono-14";
-static const char col_darkgray[]       = "#2D2D2D";
-static const char col_lightgray[]       = "#4D4D4D";
-static const char col_palewhite[]       = "#DCDCDC";
+static const char *fonts[]          = { "monospace:size=15" };
+static const char dmenufont[]       = "monospace-16";
+static const char col_gray1[]       = "#222222";
+static const char col_gray2[]       = "#444444";
+static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray4[]       = "#eeeeee";
+static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_palewhite, col_darkgray,  col_palewhite},
-	[SchemeSel]  = { col_palewhite, col_darkgray,  col_palewhite},
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
 /* tagging */
@@ -31,7 +33,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask    switchtotag   isfloating   monitor */
 	{ "Google-chrome-beta",       NULL,       NULL,       1 << 0,       1,			0,           -1 },
-	{ "Caja",         NULL,       NULL,       1 << 1,       1,			0,           -1 },
+	{ "Google-chrome",       NULL,       NULL,       1 << 0,       1,			0,           -1 },
+	{ "Thunar",         NULL,       NULL,       1 << 1,       1,			0,           -1 },
 	{ "st-256color",    NULL,       NULL,       1 << 2,       1,			0,           -1 },
 	{ "Editor",       NULL,       NULL,       1 << 3,       1,			0,           -1 },
 	{ "Evince",       NULL,       NULL,       1 << 4 ,      1,			1,           -1 },
@@ -41,6 +44,7 @@ static const Rule rules[] = {
 	{ "Lxappearance", NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Gpick", 		  NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Gpicview", 	  NULL,       NULL,       0 ,           0,			1,           -1 },
+	{ "gksqt", 	  	  NULL,       NULL,       0 ,           0,			1,           -1 },
 };
 
 /* layout(s) */
@@ -69,12 +73,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-f", "-i", "-l", "20", "-fn", dmenufont, "-sb", col_lightgray, "-sf", col_palewhite, "-nb", col_darkgray, "-nf", col_palewhite, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-f", "-i", "-l", "20", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *webcmd[]  = { "google-chrome-beta", NULL };
-static const char *explorercmd[]  = { "caja", NULL };
+static const char *explorercmd[]  = { "thunar", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
-static const char *logoutcmd[]  =  { "killall", "xinit", NULL };
+static const char *logoutcmd[]  =  { "loginctl", "terminate-user", "$whoami", NULL };
 static const char *lightupcmd[]  =  { "brightnessctl", "set", "100+", NULL };
 static const char *lightdowncmd[]  =  { "brightnessctl", "set", "100-", NULL };
 static const char *volumeupcmd[]  =  { "amixer", "set", "Master", "5%+", NULL };
