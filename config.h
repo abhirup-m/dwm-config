@@ -44,6 +44,7 @@ static const Rule rules[] = {
 	{ "Lxappearance", NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Gpick", 		  NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "Gpicview", 	  NULL,       NULL,       0 ,           0,			1,           -1 },
+	{ "Gthumb", 	  NULL,       NULL,       0 ,           0,			1,           -1 },
 	{ "gksqt", 	  	  NULL,       NULL,       0 ,           0,			1,           -1 },
 };
 
@@ -78,12 +79,14 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *webcmd[]  = { "google-chrome-beta", NULL };
 static const char *explorercmd[]  = { "thunar", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
-static const char *logoutcmd[]  =  { "loginctl", "terminate-user", "$whoami", NULL };
+static const char *logoutcmd[]  =  { "killall", "xinit", NULL };
 static const char *lightupcmd[]  =  { "brightnessctl", "set", "100+", NULL };
 static const char *lightdowncmd[]  =  { "brightnessctl", "set", "100-", NULL };
 static const char *volumeupcmd[]  =  { "amixer", "set", "Master", "5%+", NULL };
 static const char *volumedowncmd[]  =  { "amixer", "set", "Master", "5%-", NULL };
 static const char *rebootcmd[]  =  { "systemctl", "reboot", "-i", NULL };
+static const char *changewall[]  =  { "nitrogen", "--random", "/home/storage/pictures/walls/", "--set-scaled", NULL };
+static const char *togglefullscreen[]  =  { "wmctrl", "-r", ":ACTIVE:", "-b", "toggle,fullscreen", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -99,6 +102,8 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_equal,  spawn,          {.v = volumeupcmd } },
 	{ MODKEY|ControlMask,           XK_minus,  spawn,          {.v = volumedowncmd } },
 	{ MODKEY|ShiftMask,           	XK_y,      spawn,          {.v = rebootcmd } },
+	{ MODKEY,           			XK_w,      spawn,          {.v = changewall } },
+	{ MODKEY,           			XK_f,      spawn,          {.v = togglefullscreen } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
